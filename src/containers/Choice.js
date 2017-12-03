@@ -55,10 +55,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-// @DragSource('Choice', cardSource, (connect, monitor) => ({
-//   connectDragSource: connect.dragSource(),
-//   isDragging: monitor.isDragging(),
-// }))
 export default DragSource('Choice', cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
