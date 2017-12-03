@@ -8,8 +8,7 @@
     "build": "react-static build",
     "serve": "serve dist -p 3000",
     "build-css": "node-sass-chokidar src/sass -o src/styles",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar src/sass -o src/styles --watch --recursive"
+    "watch-css": "npm run build-css && node-sass-chokidar src/sass -o src/styles --watch --recursive"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -23,7 +22,9 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-static": "^4.3.4",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-immutable": "^4.0.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "eslint-config-react-tools": "1.x.x",
