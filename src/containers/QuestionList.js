@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { DropTarget } from 'react-dnd';
 import { List } from 'immutable';
 import Question from './Question';
+import { AddQuestion } from '../connectors/redux/action-creators/QuestionAC';
+import store from '../connectors/redux/store';
 
 export class QuestionList extends React.Component {
   render() {
@@ -12,7 +15,20 @@ export class QuestionList extends React.Component {
         </li>
       );
     });
-    return <ul>{questions}</ul>;
+    if (this.props.connectDropTarget) {
+      return this.props.connectDropTarget(
+        <div>
+          <h3>Drag Here!</h3>
+          <ul>{questions}</ul>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <h3>Drag Here!</h3>
+        <ul>{questions}</ul>
+      </div>
+    );
   }
 }
 
@@ -22,4 +38,19 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(QuestionList);
+const specs = {
+  drop: () => {
+    store.dispatch(AddQuestion('My Question', ['a', 'b', 'c']));
+    return undefined;
+  },
+};
+
+function collector(connect) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+  };
+}
+
+export default DropTarget('Choice', specs, collector)(
+  connect(mapStateToProps)(QuestionList)
+);
