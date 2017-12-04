@@ -17,12 +17,12 @@ export function AddQuestion(text, answers) {
   return action;
 }
 
-export function EditQuestionTitle(text, qId, answers) {
+export function EditQuestion(text, qId, answers) {
   const action = {
     type: EDIT_TITLE,
     id: qId,
     title: text,
-    answers: answers,
+    answers: List(answers),
   };
   return action;
 }
