@@ -9,7 +9,11 @@ if (typeof window === 'undefined') {
 
 const initState = Map({
   questions: List(),
+  currentQuestion: Map({
+    id: '',
+  }),
 });
+
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
   reducer,
