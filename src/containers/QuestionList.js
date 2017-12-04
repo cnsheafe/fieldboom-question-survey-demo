@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { List } from 'immutable';
 import Question from './Question';
-import { AddQuestion } from '../connectors/redux/action-creators/QuestionAC';
+import { AddQuestion } from '../connectors/redux/action-creators/question-creator';
 import store from '../connectors/redux/store';
 
 export class QuestionList extends React.Component {
@@ -20,7 +20,7 @@ export class QuestionList extends React.Component {
         <div>
           <h3>Drag Here!</h3>
           <ul>{questions}</ul>
-        </div>
+        </div>,
       );
     }
     return (
@@ -51,6 +51,4 @@ function collector(connect) {
   };
 }
 
-export default DropTarget('Choice', specs, collector)(
-  connect(mapStateToProps)(QuestionList)
-);
+export default DropTarget('Choice', specs, collector)(connect(mapStateToProps)(QuestionList));
