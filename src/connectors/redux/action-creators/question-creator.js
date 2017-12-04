@@ -4,6 +4,7 @@ const uuid = require('uuid/v4');
 
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const MOVE_QUESTION = 'MOVE_QUESTION';
+export const EDIT_TITLE = 'EDIT_QUESTION_TITLE';
 
 export function AddQuestion(text, answers) {
   const action = {
@@ -15,6 +16,17 @@ export function AddQuestion(text, answers) {
 
   return action;
 }
+
+export function EditQuestionTitle(text, qId, answers) {
+  const action = {
+    type: EDIT_TITLE,
+    id: qId,
+    title: text,
+    answers: answers,
+  };
+  return action;
+}
+
 export function MoveQuestion(qId, newIndex) {
   const action = {
     type: MOVE_QUESTION,
