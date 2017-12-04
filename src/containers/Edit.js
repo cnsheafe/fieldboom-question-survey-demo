@@ -5,9 +5,11 @@ import { EditQuestion } from '../connectors/redux/action-creators/question-creat
 const uuid = require('uuid/v4');
 
 export class Edit extends React.Component {
-
   shouldComponentUpdate(nextProps) {
-    if (nextProps.id === this.props.id) {
+    if (
+      nextProps.id === this.props.id &&
+      nextProps.answers.size === this.props.answers.size
+    ) {
       return false;
     }
     return true;
@@ -19,15 +21,33 @@ export class Edit extends React.Component {
 
   handleTitleChange(e) {
     e.preventDefault();
-    this.props.updateQuestion(e.target.value, this.props.id, this.props.answers);
+    this.props.updateQuestion(
+      e.target.value,
+      this.props.id,
+      this.props.answers,
+    );
   }
 
   handleAnswerChange(e) {
     e.preventDefault();
     const newAnswer = e.target.value;
     const index = e.target.dataset.index;
-    console.log(this.props.answers);
     const newAnswers = this.props.answers.set(index, newAnswer);
+    this.props.updateQuestion(this.props.title, this.props.id, newAnswers);
+  }
+
+  handleAddAnswer(e) {
+    e.preventDefault();
+    const newAnswer = e.target.dataset.answer;
+    const index = e.target.dataset.index;
+    const newAnswers = this.props.answers.insert(index, newAnswer);
+    this.props.updateQuestion(this.props.title, this.props.id, newAnswers);
+  }
+
+  handleRemoveAnswer(e) {
+    e.preventDefault();
+    const index = e.target.dataset.index;
+    const newAnswers = this.props.answers.delete(index);
     this.props.updateQuestion(this.props.title, this.props.id, newAnswers);
   }
 
@@ -46,8 +66,16 @@ export class Edit extends React.Component {
               />
             </span>
             <span>
-              <button>Add</button>
-              <button>Remove</button>
+              <button
+                data-index={index}
+                data-answer={answer}
+                onClick={e => this.handleAddAnswer(e)}
+              >
+                Add
+              </button>
+              <button data-index={index} data-answer={answer} onClick={e => this.handleRemoveAnswer(e)}>
+                Remove
+              </button>
             </span>
           </li>
         );
