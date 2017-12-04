@@ -1,24 +1,56 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { EditQuestionTitle } from '../connectors/redux/action-creators/question-creator';
+import { EditQuestion } from '../connectors/redux/action-creators/question-creator';
 
 const uuid = require('uuid/v4');
 
 export class Edit extends React.Component {
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.id === this.props.id) {
+      return false;
+    }
+    return true;
+  }
+
   componentDidUpdate() {
     document.getElementById('edit-question').value = this.props.title;
   }
 
-  handleInputChange(e) {
+  handleTitleChange(e) {
     e.preventDefault();
-    this.props.updateTitle(e.target.value, this.props.id, this.props.answers);
+    this.props.updateQuestion(e.target.value, this.props.id, this.props.answers);
+  }
+
+  handleAnswerChange(e) {
+    e.preventDefault();
+    const newAnswer = e.target.value;
+    const index = e.target.dataset.index;
+    console.log(this.props.answers);
+    const newAnswers = this.props.answers.set(index, newAnswer);
+    this.props.updateQuestion(this.props.title, this.props.id, newAnswers);
   }
 
   render() {
     let answers;
     if (this.props.answers) {
-      answers = this.props.answers.map(answer => {
-        return <li key={uuid()}>{answer}</li>;
+      answers = this.props.answers.map((answer, index) => {
+        return (
+          <li key={uuid()}>
+            <span>
+              <input
+                className="edit-answer"
+                data-index={index}
+                defaultValue={answer}
+                onChange={e => this.handleAnswerChange(e)}
+              />
+            </span>
+            <span>
+              <button>Add</button>
+              <button>Remove</button>
+            </span>
+          </li>
+        );
       });
     }
 
@@ -27,7 +59,11 @@ export class Edit extends React.Component {
         <h3>Edit</h3>
         <div>
           <label htmlFor="edit-question">Question</label>
-          <input id="edit-question" onChange={e => this.handleInputChange(e)} />
+          <input
+            id="edit-question"
+            defaultValue={this.props.title || ''}
+            onChange={e => this.handleTitleChange(e)}
+          />
         </div>
         <div>
           <h3>Answer Choices</h3>
@@ -64,8 +100,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateTitle: (newTitle, id, answers) => {
-      dispatch(EditQuestionTitle(newTitle, id, answers));
+    updateQuestion: (title, id, answers) => {
+      dispatch(EditQuestion(title, id, answers));
     },
   };
 }
