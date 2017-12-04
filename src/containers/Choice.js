@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
 import PropTypes from 'prop-types';
-import { AddQuestion } from '../connectors/redux/action-creators/QuestionAC';
+import { AddQuestion } from '../connectors/redux/action-creators/question-creator';
+import { ChangeQuestion } from '../connectors/redux/action-creators/current-question-editor';
 
 const cardSource = {
   beginDrag(props) {
@@ -50,7 +51,8 @@ export class Choice extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     addDefaultQuestion: () => {
-      dispatch(AddQuestion('My Question', ['a', 'b', 'c']));
+      const action = dispatch(AddQuestion('My Question', ['a', 'b', 'c']));
+      dispatch(ChangeQuestion(action.id));
     },
   };
 }

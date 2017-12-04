@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 
+const uuid = require('uuid/v4');
+
 export class Question extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -11,7 +13,7 @@ export class Question extends React.Component {
 
   render() {
     const answers = this.props.answers.map(answer => {
-      return <li>{answer}</li>;
+      return <li key={uuid()}>{answer}</li>;
     });
     return (
       <div>
