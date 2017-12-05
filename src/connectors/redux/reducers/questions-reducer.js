@@ -1,4 +1,8 @@
-import { ADD_QUESTION, MOVE_QUESTION, EDIT_TITLE } from '../action-creators/question-creator';
+import {
+  ADD_QUESTION,
+  MOVE_QUESTION,
+  EDIT_TITLE,
+} from '../action-creators/question-creator';
 
 function addQuestionToState(state, action) {
   const question = {
@@ -19,20 +23,19 @@ function updateTitle(state, action) {
     title: action.title,
     answers: action.answers,
     id: keyValuePair[1].id,
-  }
+  };
   const newState = state.set(keyValuePair[0], updatedQuestion);
   return newState;
 }
 
-
 function moveQuestion(state, action) {
-  const keyValuePair = state.questions.findEntry(val => {
+  const keyValuePair = state.findEntry(val => {
     return val.id === action.id;
   });
 
-  return state.questions
+  return state
     .delete(keyValuePair[0])
-    .insert(keyValuePair[1], keyValuePair[0]);
+    .insert(action.index, keyValuePair[1]);
 }
 
 export default function(state, action) {
@@ -42,9 +45,7 @@ export default function(state, action) {
     case EDIT_TITLE:
       return updateTitle(state, action);
     case MOVE_QUESTION:
-      return {
-        questions: moveQuestion(state, action),
-      };
+      return moveQuestion(state, action);
     default:
       return state;
   }
