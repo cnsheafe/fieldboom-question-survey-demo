@@ -5,13 +5,6 @@ import PropTypes from 'prop-types';
 import { AddQuestion } from '../connectors/redux/action-creators/question-creator';
 import { ChangeQuestion } from '../connectors/redux/action-creators/current-question-editor';
 
-const cardSource = {
-  beginDrag(props) {
-    return {
-      title: props.title,
-    };
-  },
-};
 export class Choice extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -56,6 +49,13 @@ function mapDispatchToProps(dispatch) {
     },
   };
 }
+const cardSource = {
+  beginDrag(props) {
+    return {
+      title: props.title,
+    };
+  },
+};
 
 export default DragSource('Choice', cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
