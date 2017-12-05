@@ -27,11 +27,11 @@ export function EditQuestion(text, qId, answers) {
   return action;
 }
 
-export function MoveQuestion(qId, newIndex) {
+export function MoveQuestion(sourceId, index) {
   const action = {
     type: MOVE_QUESTION,
-    id: qId,
-    index: newIndex,
+    id: sourceId,
+    index: index,
   };
 
   return action;
