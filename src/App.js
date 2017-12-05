@@ -4,10 +4,7 @@ import { Router } from 'react-static'
 import Routes from 'react-static-routes'
 //
 import { Provider } from 'react-redux'
-import store from './connectors/redux'
-
-// import './styles/home.scss';
-// import './app.css'
+import store from './connectors/redux/store';
 
 export default () => (
   <Provider store={store}>

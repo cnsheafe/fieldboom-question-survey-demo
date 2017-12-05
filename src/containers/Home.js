@@ -1,18 +1,15 @@
 import React from 'react';
-//
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 import { Selection } from './Selection';
-import { QuestionList } from './QuestionList';
-import { Edit } from './Edit';
+import QuestionList from './QuestionList';
+import Edit from './Edit';
 import '../styles/home.css';
 
-export default class Home extends React.Component {
+export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.defaultchoices = [{ title: 'multi-choice', icon: 'multi' }];
-    this.defaultquestions = [
-      { text: 'hello', index: 1, answers: ['a', 'b', 'c'] },
-    ];
-    this.defaultAnswers = this.defaultquestions[0].answers;
   }
 
   render() {
@@ -20,9 +17,11 @@ export default class Home extends React.Component {
       <div className="home">
         <h1>Welcome to </h1>
         <Selection choices={this.defaultchoices} />
-        <QuestionList questions={this.defaultquestions} />
-        <Edit answers={this.defaultAnswers} />
+        <QuestionList />
+        <Edit />
       </div>
     );
   }
 }
+
+export default DragDropContext(HTML5Backend)(Home);

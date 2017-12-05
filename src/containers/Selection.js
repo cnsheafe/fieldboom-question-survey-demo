@@ -1,5 +1,5 @@
 import React from 'react';
-import { Choice } from './Choice';
+import Choice from './Choice';
 
 export class Selection extends React.Component {
   constructor(props) {
