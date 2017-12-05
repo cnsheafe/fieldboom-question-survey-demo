@@ -9,10 +9,10 @@ import { ChangeQuestion } from '../connectors/redux/action-creators/current-ques
 
 export class QuestionList extends React.Component {
   render() {
-    const questions = this.props.questions.map(question => {
+    const questions = this.props.questions.map((question, index) => {
       return (
         <li key={question.id}>
-          <Question qId={question.id} />
+          <Question qId={question.id} index={index} />
         </li>
       );
     });
