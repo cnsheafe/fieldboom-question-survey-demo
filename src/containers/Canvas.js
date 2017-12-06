@@ -20,7 +20,7 @@ export class Canvas extends React.Component {
           </span>
         </div>
 
-        <nav>
+        <nav className="canvas-nav">
           <ul>
             <li>
               <a>Questions</a>
