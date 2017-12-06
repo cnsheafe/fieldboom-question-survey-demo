@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
-import { List } from 'immutable';
 import Question from './Question';
 import { AddQuestion } from '../connectors/redux/action-creators/question-creator';
 import store from '../connectors/redux/store';
 import { ChangeQuestion } from '../connectors/redux/action-creators/current-question-editor';
+import '../styles/questions.css';
 
 export class QuestionList extends React.Component {
   render() {
@@ -16,20 +16,27 @@ export class QuestionList extends React.Component {
         </li>
       );
     });
-    if (this.props.connectDropTarget) {
-      return this.props.connectDropTarget(
-        <div>
-          <h3>Drag Here!</h3>
-          <ul>{questions}</ul>
-        </div>,
-      );
-    }
-    return (
-      <div>
-        <h3>Drag Here!</h3>
+
+    const jsxElm = (
+      <div className="question-list">
         <ul>{questions}</ul>
+        <div className="question-drop">
+          <div className="circle">
+            <div className="line" />
+            <div className="line-vertical" />
+          </div>
+          <div className="question-drop-text">
+            <h4>Add a Question</h4>
+            <p>Drag a question from the left and drop it here</p>
+          </div>
+        </div>
       </div>
     );
+
+    if (this.props.connectDropTarget) {
+      return this.props.connectDropTarget(jsxElm);
+    }
+    return jsxElm;
   }
 }
 
@@ -53,4 +60,6 @@ function collector(connect) {
   };
 }
 
-export default DropTarget('Choice', specs, collector)(connect(mapStateToProps)(QuestionList));
+export default DropTarget('Choice', specs, collector)(
+  connect(mapStateToProps)(QuestionList)
+);
