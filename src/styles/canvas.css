@@ -2,17 +2,18 @@
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 10%; }
-  .canvas h1 {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: #54656F; }
 
 .canvas-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  margin-bottom: 30px; }
+  .canvas-header h1 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #54656F; }
 
 .canvas-form {
   display: flex;
@@ -38,5 +39,25 @@
     font-size: 18px; }
 
 .canvas-submit {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #54656F; }
+
+.canvas-nav {
+  width: 70%;
+  margin-bottom: 40px; }
+  .canvas-nav ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between; }
+  .canvas-nav a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #54656F;
+    padding-bottom: 10px;
+    opacity: 0.7; }
+  .canvas-nav li:first-child a {
+    color: #2A353B;
+    border-bottom: 3px solid #3766E6;
+    opacity: 1; }
