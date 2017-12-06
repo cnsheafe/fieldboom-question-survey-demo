@@ -1,5 +1,4 @@
 .home {
-    > h1 {
-        text-align: center;
-    }
+  display: grid;
+  grid-template-columns: 20fr 40fr 20fr;
 }
