@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import store from '../connectors/redux/store';
 import { MoveQuestion } from '../connectors/redux/action-creators/question-creator';
+import '../styles/questions.css';
 
 const uuid = require('uuid/v4');
 
@@ -23,31 +24,31 @@ export class Question extends React.Component {
     const indexString = `Q${this.props.index}`;
 
     const answers = this.props.answers.map(answer => {
-      return <li key={uuid()}>{answer}</li>;
+      return (
+        <li key={uuid()}>
+          <span>{answer}</span>
+        </li>
+      );
     });
+
+    const jsxElm = (
+      <div className="question">
+        <div className="question-header">
+          <span>{indexString}</span>
+          <h3>{this.props.title}</h3>
+        </div>
+        <ul className="question-answers">{answers}</ul>
+      </div>
+    );
 
     if (this.props.connectDragSource && this.props.connectDropTarget) {
       return this.props.connectDropTarget(
         this.props.connectDragSource(
-          <div className={this.props.isDragging ? 'hide' : ''}>
-            <div>
-              <span>{indexString}</span>
-              <h3>{this.props.title}</h3>
-            </div>
-            <ul>{answers}</ul>
-          </div>
+          <div className={this.props.isDragging ? 'hide' : ''}>{jsxElm}</div>
         )
       );
     }
-    return (
-      <div>
-        <div>
-          <span>{indexString}</span>
-          <h3>{this.props.title}</h3>
-        </div>
-        <ul>{answers}</ul>
-      </div>
-    );
+    return <div>{jsxElm}</div>;
   }
 }
 
