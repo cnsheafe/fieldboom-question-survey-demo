@@ -1,0 +1,42 @@
+.canvas {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10%; }
+  .canvas h1 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #54656F; }
+
+.canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.canvas-form {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  opacity: 0.5; }
+  .canvas-form > span {
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    border: 2px solid #54656F;
+    border-radius: 35px;
+    padding: 5px 15px 5px 15px; }
+  .canvas-form i {
+    margin-right: 15px;
+    font-size: 18px; }
+
+.canvas-preview {
+  color: #54656F;
+  margin-right: 5px; }
+  .canvas-preview i {
+    font-size: 18px; }
+
+.canvas-submit {
+  color: #FFFFFF;
+  background-color: #54656F; }
