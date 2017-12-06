@@ -4,18 +4,20 @@ import { DragSource } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { AddQuestion } from '../connectors/redux/action-creators/question-creator';
 import { ChangeQuestion } from '../connectors/redux/action-creators/current-question-editor';
+import '../styles/choice.css';
 
 export class Choice extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     connectDragSource: PropTypes.func,
     isDragging: PropTypes.bool,
+    addDefaultQuestion: PropTypes.func,
   };
   render() {
     if (this.props.connectDragSource) {
       return this.props.connectDragSource(
         <div>
-          {this.props.title}
+          <h1>{this.props.title}</h1>
           <button
             onClick={e => {
               this.props.addDefaultQuestion();
@@ -27,8 +29,8 @@ export class Choice extends React.Component {
       );
     }
     return (
-      <div>
-        {this.props.title}
+      <div className="selection-choice">
+        <h1>{this.props.title}</h1>
         <button
           onClick={e => {
             this.props.addDefaultQuestion();
