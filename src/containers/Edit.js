@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { EditQuestion } from '../connectors/redux/action-creators/question-creator';
+import '../styles/edit.css';
 
 const uuid = require('uuid/v4');
 
@@ -24,7 +25,7 @@ export class Edit extends React.Component {
     this.props.updateQuestion(
       e.target.value,
       this.props.id,
-      this.props.answers,
+      this.props.answers
     );
   }
 
@@ -73,7 +74,11 @@ export class Edit extends React.Component {
               >
                 Add
               </button>
-              <button data-index={index} data-answer={answer} onClick={e => this.handleRemoveAnswer(e)}>
+              <button
+                data-index={index}
+                data-answer={answer}
+                onClick={e => this.handleRemoveAnswer(e)}
+              >
                 Remove
               </button>
             </span>
@@ -83,9 +88,12 @@ export class Edit extends React.Component {
     }
 
     return (
-      <section className={this.props.answers ? '' : 'hide'}>
-        <h3>Edit</h3>
-        <div>
+      <section className={this.props.answers ? 'edit' : 'hide'}>
+        <div className="edit-header">
+          <span>{`Q${this.props.index}`}</span>
+          <h3>Multi Choice</h3>
+        </div>
+        <div className="edit-question-text">
           <label htmlFor="edit-question">Question</label>
           <input
             id="edit-question"
@@ -105,16 +113,30 @@ export class Edit extends React.Component {
 function mapStateToProps(state) {
   const currentId = state.get('currentQuestion').get('id');
 
+  if (currentId === '' && state.get('questions').size === 1) {
+    const question = state.get('questions').first();
+    return {
+      title: question.title,
+      answers: question.answers,
+      hidden: false,
+      id: question.id,
+      index: 0,
+    };
+  }
+
   if (state.get('questions').size > 0) {
-    const question = state.get('questions').find(question => {
+    const result = state.get('questions').findEntry(question => {
       return question.id === currentId;
     });
+    const question = result[1];
+    const index = result[0];
     if (question) {
       return {
         title: question.title,
         answers: question.answers,
         hidden: false,
         id: question.id,
+        index: index,
       };
     }
   }
