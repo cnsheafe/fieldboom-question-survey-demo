@@ -1,22 +1,24 @@
-@import "colors";
+@import 'colors';
 
 .canvas {
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 10%;
-  h1 {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: $selection-text-color;
-  }
 }
 
 .canvas-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
+  h1 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: $selection-text-color;
+  }
+
 }
 
 .canvas-form {
@@ -24,7 +26,7 @@
   justify-content: space-between;
   font-size: 12px;
   opacity: 0.5;
-  >span {
+  > span {
     display: flex;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
@@ -48,6 +50,32 @@
 }
 
 .canvas-submit {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: $selection-text-color;
+}
+
+.canvas-nav {
+  width: 70%;
+  margin-bottom: 40px;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  a {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: $selection-text-color;
+    padding-bottom: 10px;
+    opacity: 0.7;
+  }
+  li:first-child {
+    a {
+      color: $selection-background-color;
+      border-bottom: 3px solid $blue-border;
+      opacity: 1;
+    }
+  }
 }
