@@ -5,6 +5,7 @@ import Routes from 'react-static-routes'
 //
 import { Provider } from 'react-redux'
 import store from './connectors/redux/store';
+import './app.css';
 
 export default () => (
   <Provider store={store}>
