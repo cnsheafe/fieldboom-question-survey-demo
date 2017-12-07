@@ -121,7 +121,7 @@ export class Edit extends React.Component {
 function mapStateToProps(state) {
   const currentId = state.get('currentQuestion').get('id');
 
-  if (currentId === '' && state.get('questions').size === 1) {
+  if (currentId === '' && state.get('questions').size > 0) {
     const question = state.get('questions').first();
     return {
       title: question.title,
