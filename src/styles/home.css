@@ -1,2 +1,4 @@
-.home > h1 {
-  text-align: center; }
+.home {
+  display: grid;
+  grid-template-columns: 14fr 52fr 14fr;
+  height: 100vh; }

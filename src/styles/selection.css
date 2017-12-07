@@ -1,0 +1,26 @@
+.selection-of-choices {
+  background-color: #2A353B;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .selection-of-choices img {
+    display: block;
+    margin-bottom: 40px;
+    margin-top: 40px; }
+  .selection-of-choices ul {
+    list-style: none;
+    padding-left: 0;
+    margin-right: 10px;
+    margin-top: 40px; }
+
+.back-to-forms {
+  display: flex;
+  align-items: center;
+  color: #54656F; }
+  .back-to-forms span {
+    margin-right: 10px;
+    font-size: 10px;
+    font-weight: 600; }
+
+.small-arrow {
+  font-size: 14px; }

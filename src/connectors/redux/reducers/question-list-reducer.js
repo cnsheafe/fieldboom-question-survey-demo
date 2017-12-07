@@ -1,8 +1,9 @@
 import {
   ADD_QUESTION,
   MOVE_QUESTION,
-  EDIT_TITLE,
-} from '../action-creators/question-creator';
+  EDIT_QUESTION,
+  DELETE_QUESTION,
+} from '../action-creators/question-list';
 
 function addQuestionToState(state, action) {
   const question = {
@@ -15,7 +16,14 @@ function addQuestionToState(state, action) {
   return questionList;
 }
 
-function updateTitle(state, action) {
+function deleteQuestion(state, action) {
+  const index = state.findIndex(question => {
+    return question.id === action.id
+  });
+  return state.delete(index);
+}
+
+function updateQuestion(state, action) {
   const keyValuePair = state.findEntry(q => {
     return q.id === action.id;
   });
@@ -29,21 +37,23 @@ function updateTitle(state, action) {
 }
 
 function moveQuestion(state, action) {
-  const keyValuePair = state.findEntry(val => {
+  const [index, question] = state.findEntry(val => {
     return val.id === action.id;
   });
 
   return state
-    .delete(keyValuePair[0])
-    .insert(action.index, keyValuePair[1]);
+    .delete(index)
+    .insert(action.index, question);
 }
 
 export default function(state, action) {
   switch (action.type) {
     case ADD_QUESTION:
       return addQuestionToState(state, action);
-    case EDIT_TITLE:
-      return updateTitle(state, action);
+    case DELETE_QUESTION:
+      return deleteQuestion(state, action);
+    case EDIT_QUESTION:
+      return updateQuestion(state, action);
     case MOVE_QUESTION:
       return moveQuestion(state, action);
     default:

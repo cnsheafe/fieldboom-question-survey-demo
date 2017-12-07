@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { EditQuestion } from '../connectors/redux/action-creators/question-creator';
+import { EditQuestion } from '../connectors/redux/action-creators/question-list';
+import '../styles/edit.css';
 
 const uuid = require('uuid/v4');
 
@@ -24,7 +25,7 @@ export class Edit extends React.Component {
     this.props.updateQuestion(
       e.target.value,
       this.props.id,
-      this.props.answers,
+      this.props.answers
     );
   }
 
@@ -56,7 +57,10 @@ export class Edit extends React.Component {
     if (this.props.answers) {
       answers = this.props.answers.map((answer, index) => {
         return (
-          <li key={uuid()}>
+          <li key={uuid()} className="edit-answer-item">
+            <span className="edit-reorder-answers">
+              <i className="fa fa-sort" aria-hidden="true" />
+            </span>
             <span>
               <input
                 className="edit-answer"
@@ -66,16 +70,24 @@ export class Edit extends React.Component {
               />
             </span>
             <span>
-              <button
+              <i
+                role="button"
                 data-index={index}
                 data-answer={answer}
+                className="material-icons green-add"
                 onClick={e => this.handleAddAnswer(e)}
               >
-                Add
-              </button>
-              <button data-index={index} data-answer={answer} onClick={e => this.handleRemoveAnswer(e)}>
-                Remove
-              </button>
+                add_circle
+              </i>
+              <i
+                role="button"
+                data-index={index}
+                data-answer={answer}
+                className="material-icons red-remove"
+                onClick={e => this.handleRemoveAnswer(e)}
+              >
+                remove_circle
+              </i>
             </span>
           </li>
         );
@@ -83,17 +95,21 @@ export class Edit extends React.Component {
     }
 
     return (
-      <section className={this.props.answers ? '' : 'hide'}>
-        <h3>Edit</h3>
-        <div>
+      <section className={this.props.answers ? 'edit' : 'hide'}>
+        <div className="edit-header">
+          <span>{`Q${this.props.index}`}</span>
+          <h3>Multi Choice</h3>
+        </div>
+        <div className="edit-question-text">
           <label htmlFor="edit-question">Question</label>
-          <input
+          <textarea
             id="edit-question"
             defaultValue={this.props.title || ''}
+            rows="5"
             onChange={e => this.handleTitleChange(e)}
           />
         </div>
-        <div>
+        <div className="edit-answers">
           <h3>Answer Choices</h3>
           <ul>{answers}</ul>
         </div>
@@ -105,16 +121,29 @@ export class Edit extends React.Component {
 function mapStateToProps(state) {
   const currentId = state.get('currentQuestion').get('id');
 
+  if (currentId === '' && state.get('questions').size > 0) {
+    const question = state.get('questions').first();
+    return {
+      title: question.title,
+      answers: question.answers,
+      hidden: false,
+      id: question.id,
+      index: 1,
+    };
+  }
+
   if (state.get('questions').size > 0) {
-    const question = state.get('questions').find(question => {
+    const [index, question] = state.get('questions').findEntry(question => {
       return question.id === currentId;
     });
+
     if (question) {
       return {
         title: question.title,
         answers: question.answers,
         hidden: false,
         id: question.id,
+        index: index + 1,
       };
     }
   }

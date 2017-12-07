@@ -1,0 +1,146 @@
+@import "colors";
+
+.question-list {
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+}
+
+.dim {
+  // display: none;
+  opacity: 0.5;
+}
+
+
+.question {
+  border: 2px solid $opaque-border;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+.current-question {
+  border-color: $blue-border;
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 5%;
+  margin-bottom: 50px;
+  span {
+    margin-right: 10px;
+    color: $blue-border;
+  }
+  h3 {
+    color: $selection-background-color;
+    opacity: 0.9;
+  }
+  span, h3 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.question-title {
+  display: flex;
+  align-items: center;
+}
+
+.question-controls {
+  align-self: center;
+}
+
+.question-delete, .question-edit {
+  color: $selection-text-color;
+  font-size: 18px;
+  margin-right: 30px;
+  border: 2px solid $opaque-border;
+  padding: 3px;
+  border-radius: 20px;
+  opacity: 0.8;
+}
+
+.question-delete:hover, .question-edit:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.question-answers {
+  display: flex;
+  margin-left: 15%;
+  margin-bottom: 50px;
+  li {
+    margin-right: 20px;
+  }
+  span {
+    border: 2px solid $opaque-border;
+    color: $selection-background-color;
+    border-radius: 35px;
+    padding: 8px 20px 8px 20px;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600; 
+    color: $selection-text-color;
+  }
+}
+
+.circle {
+  position: relative;
+  border: 2px dashed $blue-border;
+  border-radius: 100%;
+  height: 80px;
+  width: 80px;
+  margin: auto;
+}
+
+.line {
+  position: absolute;
+  border: 1px solid $blue-border;
+  width: 20px;
+  height: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.line-vertical {
+  @extend .line;
+  transform: rotate(90deg);
+}
+
+.question-drop {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  margin-top: 10px;
+  border: 2px dashed $darker-opaque;
+  min-height: 100%;
+}
+
+.question-drop-text {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h4 {
+    text-align: center;
+    color: $selection-background-color;
+    opacity: 0.9;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+  p {
+    text-align: center;
+    color: $darker-opaque;
+    margin-top: 0;
+    font-size: 14px;
+  }
+}

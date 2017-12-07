@@ -1,0 +1,117 @@
+.question-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0; }
+
+.dim {
+  opacity: 0.5; }
+
+.question {
+  border: 2px solid #E8EDF3;
+  margin-top: 20px;
+  padding-bottom: 50px; }
+
+.current-question {
+  border-color: #3766E6; }
+
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 5%;
+  margin-bottom: 50px; }
+  .question-header span {
+    margin-right: 10px;
+    color: #3766E6; }
+  .question-header h3 {
+    color: #2A353B;
+    opacity: 0.9; }
+  .question-header span, .question-header h3 {
+    font-size: 20px;
+    font-weight: 700; }
+
+.question-title {
+  display: flex;
+  align-items: center; }
+
+.question-controls {
+  align-self: center; }
+
+.question-delete, .question-edit {
+  color: #54656F;
+  font-size: 18px;
+  margin-right: 30px;
+  border: 2px solid #E8EDF3;
+  padding: 3px;
+  border-radius: 20px;
+  opacity: 0.8; }
+
+.question-delete:hover, .question-edit:hover {
+  cursor: pointer;
+  opacity: 1; }
+
+.question-answers {
+  display: flex;
+  margin-left: 15%;
+  margin-bottom: 50px; }
+  .question-answers li {
+    margin-right: 20px; }
+  .question-answers span {
+    border: 2px solid #E8EDF3;
+    color: #2A353B;
+    border-radius: 35px;
+    padding: 8px 20px 8px 20px;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: #54656F; }
+
+.circle {
+  position: relative;
+  border: 2px dashed #3766E6;
+  border-radius: 100%;
+  height: 80px;
+  width: 80px;
+  margin: auto; }
+
+.line, .line-vertical {
+  position: absolute;
+  border: 1px solid #3766E6;
+  width: 20px;
+  height: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0; }
+
+.line-vertical {
+  transform: rotate(90deg); }
+
+.question-drop {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  margin-top: 10px;
+  border: 2px dashed #c9d0d8;
+  min-height: 100%; }
+
+.question-drop-text {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .question-drop-text h4 {
+    text-align: center;
+    color: #2A353B;
+    opacity: 0.9;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 22px; }
+  .question-drop-text p {
+    text-align: center;
+    color: #c9d0d8;
+    margin-top: 0;
+    font-size: 14px; }
