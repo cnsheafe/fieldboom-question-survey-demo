@@ -1,14 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import QuestionList from './QuestionList';
 import '../styles/canvas.css';
 
 export class Canvas extends React.Component {
+  static myProps = {
+    highlight: PropTypes.bool.isRequired,
+  };
   render() {
     return (
       <section className="canvas">
         <div className="canvas-header">
           <h1>Customer Satisfaction Survey</h1>
-          <span className="canvas-form">
+          <span
+            className={
+              this.props.highlight ? 'canvas-form highlight' : 'canvas-form'
+            }
+          >
             <span className="canvas-preview">
               <i className="material-icons icon-text-gray">remove_red_eye</i>
               <span>Preview</span>
@@ -44,3 +53,11 @@ export class Canvas extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    highlight: state.get('questions').size > 0,
+  };
+}
+
+export default connect(mapStateToProps)(Canvas);
