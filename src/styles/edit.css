@@ -35,6 +35,8 @@
     font-size: 14px;
     font-weight: 600;
     color: #c9d0d8; }
+  .edit-question-text textarea:focus {
+    color: #54656F; }
 
 .edit-answers {
   margin-right: 25px;
@@ -63,6 +65,8 @@
     color: #c9d0d8;
     font-size: 12px;
     font-weight: 600; }
+  .edit-answer-item input:focus {
+    color: #54656F; }
   .edit-answer-item .material-icons {
     cursor: pointer; }
 

@@ -45,6 +45,9 @@
     font-weight: 600;
     color: $darker-opaque;
   }
+  textarea:focus {
+    color: $selection-text-color;
+  }
 }
 
 .edit-answers {
@@ -80,6 +83,10 @@
     color: $darker-opaque;
     font-size: 12px;
     font-weight: 600;
+  }
+
+  input:focus {
+    color: $selection-text-color;
   }
 
   .material-icons {
