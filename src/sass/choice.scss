@@ -1,0 +1,30 @@
+@import "colors";
+
+.selection-choice {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  background-color: $icon-background;
+  margin: 10px;
+  .icon {
+    position: relative;
+    text-align: center; 
+  }
+  i {
+    position: relative;
+    margin-top: 25%;
+    margin-bottom: 25%;
+  }
+  h3 {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 10px;
+    text-align: center;
+    color: $selection-text-color;
+  }
+}
+
+.white-icon {
+  color: #FFFFFF;
+}
