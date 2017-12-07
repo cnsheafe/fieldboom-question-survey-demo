@@ -21,7 +21,7 @@ export class Question extends React.Component {
   };
 
   render() {
-    const indexString = `Q${this.props.index}`;
+    const indexString = `Q${this.props.index + 1}`;
 
     const answers = this.props.answers.map(answer => {
       return (
