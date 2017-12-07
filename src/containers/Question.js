@@ -18,10 +18,10 @@ export class Question extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     answers: PropTypes.objectOf(List).isRequired,
-    hoverOver: PropTypes.bool.isRequired,
     isCurrent: PropTypes.bool.isRequired,
     qId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
+    highlight: PropTypes.func,
     connectDragSource: PropTypes.func,
     connectDropTarget: PropTypes.func,
     isDragging: PropTypes.bool,
@@ -41,9 +41,11 @@ export class Question extends React.Component {
         </li>
       );
     });
-    const classNameString = `question ${this.props.hoverOver ? 'hover' : ''} ${
+
+    const classNameString = `question ${
       this.props.isCurrent ? 'current-question' : ''
     }`;
+
     const jsxElm = (
       <div
         className={classNameString}
@@ -60,7 +62,7 @@ export class Question extends React.Component {
     if (this.props.connectDragSource && this.props.connectDropTarget) {
       return this.props.connectDropTarget(
         this.props.connectDragSource(
-          <div className={this.props.isDragging ? 'hide' : ''}>{jsxElm}</div>
+          <div className={this.props.isDragging ? 'dim' : ''}>{jsxElm}</div>
         )
       );
     }
@@ -74,12 +76,10 @@ function mapStateToProps(state, ownProps) {
     return question.id === ownProps.qId;
   });
   const isCurrent = question.id === state.get('currentQuestion').get('id');
-  const isHover = question.id === state.get('currentQuestion').get('next');
 
   return {
     answers: question.answers,
     title: question.title,
-    hoverOver: isHover,
     isCurrent: isCurrent,
   };
 }
