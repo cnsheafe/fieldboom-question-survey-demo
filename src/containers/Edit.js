@@ -133,11 +133,10 @@ function mapStateToProps(state) {
   }
 
   if (state.get('questions').size > 0) {
-    const result = state.get('questions').findEntry(question => {
+    const [index, question] = state.get('questions').findEntry(question => {
       return question.id === currentId;
     });
-    const question = result[1];
-    const index = result[0];
+
     if (question) {
       return {
         title: question.title,
