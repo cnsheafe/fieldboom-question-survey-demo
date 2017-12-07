@@ -52,8 +52,14 @@ export class Question extends React.Component {
         onClick={e => this.onHighlightQuestion()}
       >
         <div className="question-header">
-          <span>{indexString}</span>
-          <h3>{this.props.title}</h3>
+          <span className="question-title">
+            <span>{indexString}</span>
+            <h3>{this.props.title}</h3>
+          </span>
+          <span className="question-controls">
+            <i className="material-icons question-delete">delete</i>
+            <i className="material-icons question-edit">edit</i>
+          </span>
         </div>
         <ul className="question-answers">{answers}</ul>
       </div>
