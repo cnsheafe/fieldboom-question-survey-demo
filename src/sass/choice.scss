@@ -1,9 +1,9 @@
 @import "colors";
 
 .selection-choice {
-  height: 50px;
-  width: 50px;
-  border-radius: 50px;
+  height: 70px;
+  width: 70px;
+  border-radius: 70px;
   background-color: $icon-background;
   margin: 10px;
   cursor: pointer;
@@ -28,4 +28,5 @@
 
 .white-icon {
   color: #FFFFFF;
+  font-size: 32px;
 }
