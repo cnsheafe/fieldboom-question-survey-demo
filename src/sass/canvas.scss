@@ -49,10 +49,22 @@
     font-size: 18px;
   }
 }
-
 .canvas-submit {
   color: #ffffff;
   background-color: $selection-text-color;
+}
+
+.highlight {
+  opacity: 1;
+  > span {
+    border-color: $form-orange;
+  }
+  .canvas-preview {
+    color: $form-orange;
+  }
+  .canvas-submit {
+    background-color: $form-orange;
+  }
 }
 
 .canvas-nav {

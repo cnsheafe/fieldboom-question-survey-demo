@@ -43,6 +43,15 @@
   color: #ffffff;
   background-color: #54656F; }
 
+.highlight {
+  opacity: 1; }
+  .highlight > span {
+    border-color: #F45E24; }
+  .highlight .canvas-preview {
+    color: #F45E24; }
+  .highlight .canvas-submit {
+    background-color: #F45E24; }
+
 .canvas-nav {
   width: 70%;
   margin-bottom: 40px; }
