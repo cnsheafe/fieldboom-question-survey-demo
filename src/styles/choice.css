@@ -3,7 +3,8 @@
   width: 50px;
   border-radius: 50px;
   background-color: #26C2FD;
-  margin: 10px; }
+  margin: 10px;
+  cursor: pointer; }
   .selection-choice .icon {
     position: relative;
     text-align: center; }
