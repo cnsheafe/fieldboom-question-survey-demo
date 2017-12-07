@@ -48,7 +48,8 @@ function mapStateToProps(state) {
 
 const specs = {
   drop: () => {
-    const action = store.dispatch(AddQuestion('My Question', ['a', 'b', 'c']));
+    const action = AddQuestion('Which country do you live in?', ['United States', 'Canada', 'Australia']);
+    store.dispatch(action);
     store.dispatch(ChangeQuestion(action.id));
     return undefined;
   },
