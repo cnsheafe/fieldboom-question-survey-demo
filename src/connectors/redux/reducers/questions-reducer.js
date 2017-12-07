@@ -29,13 +29,13 @@ function updateTitle(state, action) {
 }
 
 function moveQuestion(state, action) {
-  const keyValuePair = state.findEntry(val => {
+  const [index, question] = state.findEntry(val => {
     return val.id === action.id;
   });
 
   return state
-    .delete(keyValuePair[0])
-    .insert(action.index, keyValuePair[1]);
+    .delete(index)
+    .insert(action.index, question);
 }
 
 export default function(state, action) {
