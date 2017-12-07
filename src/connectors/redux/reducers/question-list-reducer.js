@@ -3,7 +3,7 @@ import {
   MOVE_QUESTION,
   EDIT_QUESTION,
   DELETE_QUESTION,
-} from '../action-creators/question-creator';
+} from '../action-creators/question-list';
 
 function addQuestionToState(state, action) {
   const question = {
