@@ -9,7 +9,7 @@ import '../styles/home.css';
 export class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.defaultchoices = [{ title: 'multi-choice', icon: 'multi' }];
+    this.defaultchoices = [{ title: 'Multi Choice', icon: 'view_list' }];
   }
 
   render() {
