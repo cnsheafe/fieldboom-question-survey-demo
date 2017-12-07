@@ -37,6 +37,9 @@
   display: flex;
   align-items: center; }
 
+.question-controls {
+  align-self: center; }
+
 .question-delete, .question-edit {
   color: #54656F;
   font-size: 18px;
