@@ -27,7 +27,9 @@
 .question-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-family: 'Open Sans', sans-serif;
+  width: 80%;
   margin-left: 10%;
   margin-top: 5%;
   margin-bottom: 50px;
@@ -43,6 +45,29 @@
     font-size: 20px;
     font-weight: 700;
   }
+}
+
+.question-title {
+  display: flex;
+  align-items: center;
+}
+
+.question-controls {
+}
+
+.question-delete, .question-edit {
+  color: $selection-text-color;
+  font-size: 18px;
+  margin-right: 30px;
+  border: 2px solid $opaque-border;
+  padding: 3px;
+  border-radius: 20px;
+  opacity: 0.8;
+}
+
+.question-delete:hover, .question-edit:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 .question-answers {
