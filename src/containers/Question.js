@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import store from '../connectors/redux/store';
 import { MoveQuestion } from '../connectors/redux/action-creators/question-creator';
-import { HoverOver, CancelHoverOver } from '../connectors/redux/action-creators/current-question-editor';
+import {
+  HoverOver,
+  CancelHoverOver,
+  ChangeQuestion,
+} from '../connectors/redux/action-creators/current-question-editor';
 import '../styles/questions.css';
 
 const uuid = require('uuid/v4');
@@ -15,12 +19,17 @@ export class Question extends React.Component {
     title: PropTypes.string.isRequired,
     answers: PropTypes.objectOf(List).isRequired,
     hoverOver: PropTypes.bool.isRequired,
+    isCurrent: PropTypes.bool.isRequired,
     qId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     connectDragSource: PropTypes.func,
     connectDropTarget: PropTypes.func,
     isDragging: PropTypes.bool,
   };
+
+  onHighlightQuestion() {
+    this.props.highlight(this.props.qId);
+  }
 
   render() {
     const indexString = `Q${this.props.index + 1}`;
@@ -32,8 +41,14 @@ export class Question extends React.Component {
         </li>
       );
     });
+    const classNameString = `question ${this.props.hoverOver ? 'hover' : ''} ${
+      this.props.isCurrent ? 'current-question' : ''
+    }`;
     const jsxElm = (
-      <div className={this.props.hoverOver ? 'question hover' : 'question'}>
+      <div
+        className={classNameString}
+        onClick={e => this.onHighlightQuestion()}
+      >
         <div className="question-header">
           <span>{indexString}</span>
           <h3>{this.props.title}</h3>
@@ -58,12 +73,22 @@ function mapStateToProps(state, ownProps) {
   const question = questionList.find(question => {
     return question.id === ownProps.qId;
   });
+  const isCurrent = question.id === state.get('currentQuestion').get('id');
   const isHover = question.id === state.get('currentQuestion').get('next');
 
   return {
     answers: question.answers,
     title: question.title,
     hoverOver: isHover,
+    isCurrent: isCurrent,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    highlight: id => {
+      dispatch(ChangeQuestion(id));
+    },
   };
 }
 
@@ -81,6 +106,7 @@ const cardTarget = {
     const draggedId = monitor.getItem().sourceId;
     if (draggedId !== props.qId) {
       store.dispatch(HoverOver(props.qId));
+      store.dispatch(ChangeQuestion(props.qId));
     }
   },
   drop(props, monitor) {
@@ -88,6 +114,8 @@ const cardTarget = {
     if (draggedId !== props.qId) {
       store.dispatch(MoveQuestion(draggedId, props.index));
     }
+    store.dispatch(ChangeQuestion(draggedId));
+
     store.dispatch(CancelHoverOver());
   },
 };
@@ -98,10 +126,10 @@ function collector(connect, monitor) {
   }
   return {
     connectDropTarget: connect.dropTarget(),
-  }
+  };
 }
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   DropTarget('Question', cardTarget, collector)(
     DragSource('Question', cardSource, (connect, monitor) => ({
       connectDragSource: connect.dragSource(),
