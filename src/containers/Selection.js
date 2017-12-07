@@ -1,7 +1,7 @@
 import React from 'react';
 import Choice from './Choice';
 import '../styles/selection.css';
-import logoImg from '../assets/favicon.png';
+import logoImg from '../assets/logo-blog.png';
 
 const uuid = require('uuid/v4');
 
@@ -21,12 +21,11 @@ export class Selection extends React.Component {
     return (
       <section className="selection-of-choices">
         <div>
-          <span><img src={logoImg} alt="Fieldboom icon" /></span>
-          <h2>Fieldboom</h2>
+          <img src={logoImg} alt="Fieldboom icon" />
         </div>
-        <div>
-          <span>arrow icon</span>
-          <span className="back-to-forms">BACK TO YOUR FORMS</span>
+        <div className="back-to-forms">
+          <span><i className="material-icons small-arrow">keyboard_backspace</i></span>
+          <span>BACK TO YOUR FORMS</span>
         </div>
         <ul>{listOfChoices}</ul>
       </section>
