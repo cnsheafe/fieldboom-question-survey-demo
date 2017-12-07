@@ -8,6 +8,9 @@
   .selection-choice .icon {
     position: relative;
     text-align: center; }
+    .selection-choice .icon .white-icon {
+      color: #ffffff;
+      font-size: 32px; }
   .selection-choice i {
     position: relative;
     margin-top: 25%;
@@ -19,7 +22,3 @@
     margin-top: 10px;
     text-align: center;
     color: #54656F; }
-
-.white-icon {
-  color: #FFFFFF;
-  font-size: 32px; }

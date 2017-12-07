@@ -1,4 +1,4 @@
-@import "colors";
+@import 'colors';
 
 .selection-choice {
   height: 70px;
@@ -9,7 +9,11 @@
   cursor: pointer;
   .icon {
     position: relative;
-    text-align: center; 
+    text-align: center;
+    .white-icon {
+      color: #ffffff;
+      font-size: 32px;
+    }
   }
   i {
     position: relative;
@@ -24,9 +28,4 @@
     text-align: center;
     color: $selection-text-color;
   }
-}
-
-.white-icon {
-  color: #FFFFFF;
-  font-size: 32px;
 }
