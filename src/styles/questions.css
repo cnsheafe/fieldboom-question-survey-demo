@@ -17,7 +17,7 @@
   font-family: 'Open Sans', sans-serif;
   margin-left: 10%;
   margin-top: 5%;
-  margin-bottom: 30px; }
+  margin-bottom: 50px; }
   .question-header span {
     margin-right: 10px;
     color: #3766E6; }
@@ -30,7 +30,7 @@
 
 .question-answers {
   display: flex;
-  margin-left: 10%;
+  margin-left: 15%;
   margin-bottom: 50px; }
   .question-answers li {
     margin-right: 20px; }
@@ -38,7 +38,11 @@
     border: 2px solid #E8EDF3;
     color: #2A353B;
     border-radius: 35px;
-    padding: 5px 15px 5px 15px; }
+    padding: 8px 20px 8px 20px;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: #54656F; }
 
 .circle {
   position: relative;
