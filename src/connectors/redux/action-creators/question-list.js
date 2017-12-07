@@ -5,7 +5,7 @@ const uuid = require('uuid/v4');
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const MOVE_QUESTION = 'MOVE_QUESTION';
-export const EDIT_QUESTION = 'EDIT_QUESTION_TITLE';
+export const EDIT_QUESTION = 'EDIT_QUESTION';
 
 export function AddQuestion(text, answers) {
   const action = {
