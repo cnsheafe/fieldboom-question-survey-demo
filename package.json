@@ -6,6 +6,7 @@
   "scripts": {
     "start": "react-static start",
     "build": "react-static build",
+    "test": "jest",
     "serve": "serve dist -p 3000",
     "build-css": "node-sass-chokidar src/sass -o src/styles",
     "watch-css": "npm run build-css && node-sass-chokidar src/sass -o src/styles --watch --recursive"
