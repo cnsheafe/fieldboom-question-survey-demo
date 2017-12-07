@@ -68,6 +68,7 @@ const cardSource = {
   beginDrag(props) {
     return {
       sourceId: props.qId,
+      text: props.title,
     };
   },
 };
@@ -76,16 +77,21 @@ const cardTarget = {
   hover(props, monitor) {
     const draggedId = monitor.getItem().sourceId;
     if (draggedId !== props.qId) {
+      // store.dispatch(MoveQuestion(draggedId, props.index));
+    }
+  },
+  drop(props, monitor) {
+    const draggedId = monitor.getItem().sourceId;
+    if (draggedId !== props.qId) {
       store.dispatch(MoveQuestion(draggedId, props.index));
     }
   },
 };
 
-export default DropTarget('Question', cardTarget, connect => ({
+export default connect(mapStateToProps)(DropTarget('Question', cardTarget, connect => ({
   connectDropTarget: connect.dropTarget(),
 }))(
   DragSource('Question', cardSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging(),
-  }))(connect(mapStateToProps)(Question))
-);
+  }))(Question)));
