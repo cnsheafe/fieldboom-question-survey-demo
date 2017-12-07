@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import store from '../connectors/redux/store';
 import { MoveQuestion } from '../connectors/redux/action-creators/question-creator';
+import { HoverOver, CancelHoverOver } from '../connectors/redux/action-creators/current-question-editor';
 import '../styles/questions.css';
 
 const uuid = require('uuid/v4');
@@ -13,6 +14,7 @@ export class Question extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     answers: PropTypes.objectOf(List).isRequired,
+    hoverOver: PropTypes.bool.isRequired,
     qId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     connectDragSource: PropTypes.func,
@@ -30,9 +32,8 @@ export class Question extends React.Component {
         </li>
       );
     });
-
     const jsxElm = (
-      <div className="question">
+      <div className={this.props.hoverOver ? 'question hover' : 'question'}>
         <div className="question-header">
           <span>{indexString}</span>
           <h3>{this.props.title}</h3>
@@ -57,10 +58,12 @@ function mapStateToProps(state, ownProps) {
   const question = questionList.find(question => {
     return question.id === ownProps.qId;
   });
+  const isHover = question.id === state.get('currentQuestion').get('next');
 
   return {
     answers: question.answers,
     title: question.title,
+    hoverOver: isHover,
   };
 }
 
@@ -77,7 +80,7 @@ const cardTarget = {
   hover(props, monitor) {
     const draggedId = monitor.getItem().sourceId;
     if (draggedId !== props.qId) {
-      // store.dispatch(MoveQuestion(draggedId, props.index));
+      store.dispatch(HoverOver(props.qId));
     }
   },
   drop(props, monitor) {
@@ -85,13 +88,24 @@ const cardTarget = {
     if (draggedId !== props.qId) {
       store.dispatch(MoveQuestion(draggedId, props.index));
     }
+    store.dispatch(CancelHoverOver());
   },
 };
 
-export default connect(mapStateToProps)(DropTarget('Question', cardTarget, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))(
-  DragSource('Question', cardSource, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  }))(Question)));
+function collector(connect, monitor) {
+  if (!monitor.isOver()) {
+    store.dispatch(CancelHoverOver());
+  }
+  return {
+    connectDropTarget: connect.dropTarget(),
+  }
+}
+
+export default connect(mapStateToProps)(
+  DropTarget('Question', cardTarget, collector)(
+    DragSource('Question', cardSource, (connect, monitor) => ({
+      connectDragSource: connect.dragSource(),
+      isDragging: monitor.isDragging(),
+    }))(Question)
+  )
+);
