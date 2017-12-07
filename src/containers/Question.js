@@ -133,6 +133,10 @@ const cardTarget = {
       store.dispatch(HoverOver(props.qId));
       store.dispatch(ChangeQuestion(props.qId));
     }
+    else {
+      store.dispatch(HoverOver(draggedId));
+      store.dispatch(ChangeQuestion(draggedId));
+    }
   },
   drop(props, monitor) {
     const draggedId = monitor.getItem().sourceId;
