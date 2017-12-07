@@ -11,6 +11,7 @@ const initState = Map({
   questions: List(),
   currentQuestion: Map({
     id: '',
+    next: '',
   }),
 });
 
