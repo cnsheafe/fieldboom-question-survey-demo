@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import Question from './Question';
-import { AddQuestion } from '../connectors/redux/action-creators/question-creator';
+import { AddQuestion } from '../connectors/redux/action-creators/question-list';
 import store from '../connectors/redux/store';
-import { ChangeQuestion } from '../connectors/redux/action-creators/current-question-editor';
+import { ChangeQuestion } from '../connectors/redux/action-creators/current-question';
 import '../styles/questions.css';
 
 export class QuestionList extends React.Component {
