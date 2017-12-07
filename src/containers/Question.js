@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import store from '../connectors/redux/store';
-import { MoveQuestion } from '../connectors/redux/action-creators/question-creator';
+import {
+  MoveQuestion,
+  DeleteQuestion,
+} from '../connectors/redux/action-creators/question-creator';
 import {
   HoverOver,
   CancelHoverOver,
@@ -22,6 +25,7 @@ export class Question extends React.Component {
     qId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     highlight: PropTypes.func,
+    deleteThisQuestion: PropTypes.func,
     connectDragSource: PropTypes.func,
     connectDropTarget: PropTypes.func,
     isDragging: PropTypes.bool,
@@ -29,6 +33,10 @@ export class Question extends React.Component {
 
   onHighlightQuestion() {
     this.props.highlight(this.props.qId);
+  }
+
+  deleteSelf() {
+    this.props.deleteThisQuestion(this.props.qId);
   }
 
   render() {
@@ -47,18 +55,25 @@ export class Question extends React.Component {
     }`;
 
     const jsxElm = (
-      <div
-        className={classNameString}
-        onClick={e => this.onHighlightQuestion()}
-      >
+      <div className={classNameString}>
         <div className="question-header">
           <span className="question-title">
             <span>{indexString}</span>
             <h3>{this.props.title}</h3>
           </span>
           <span className="question-controls">
-            <i className="material-icons question-delete">delete</i>
-            <i className="material-icons question-edit">edit</i>
+            <i
+              className="material-icons question-delete"
+              onClick={e => this.deleteSelf()}
+            >
+              delete
+            </i>
+            <i
+              className="material-icons question-edit"
+              onClick={e => this.onHighlightQuestion()}
+            >
+              edit
+            </i>
           </span>
         </div>
         <ul className="question-answers">{answers}</ul>
@@ -81,7 +96,7 @@ function mapStateToProps(state, ownProps) {
   const question = questionList.find(question => {
     return question.id === ownProps.qId;
   });
-  const isCurrent = question.id === state.get('currentQuestion').get('id');
+  let isCurrent = question.id === state.get('currentQuestion').get('id');
 
   return {
     answers: question.answers,
@@ -94,6 +109,10 @@ function mapDispatchToProps(dispatch) {
   return {
     highlight: id => {
       dispatch(ChangeQuestion(id));
+    },
+    deleteThisQuestion: id => {
+      dispatch(ChangeQuestion(''));
+      dispatch(DeleteQuestion(id));
     },
   };
 }
