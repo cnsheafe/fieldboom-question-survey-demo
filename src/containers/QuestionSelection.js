@@ -1,5 +1,5 @@
 import React from 'react';
-import Choice from './Choice';
+import Choice from './QuestionChoice';
 import '../styles/selection.css';
 import logoImg from '../assets/logo-blog.png';
 

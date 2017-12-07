@@ -8,7 +8,7 @@ export default {
     return [
       {
         path: '/',
-        component: 'src/containers/Home',
+        component: 'src/containers/Survey',
       },
       {
         is404: true,

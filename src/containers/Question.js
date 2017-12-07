@@ -7,12 +7,12 @@ import store from '../connectors/redux/store';
 import {
   MoveQuestion,
   DeleteQuestion,
-} from '../connectors/redux/action-creators/question-creator';
+} from '../connectors/redux/action-creators/question-list';
 import {
   HoverOver,
   CancelHoverOver,
   ChangeQuestion,
-} from '../connectors/redux/action-creators/current-question-editor';
+} from '../connectors/redux/action-creators/current-question';
 import '../styles/questions.css';
 
 const uuid = require('uuid/v4');
