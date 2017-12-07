@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux-immutable';
 
-import questions from './questions-reducer';
+import questions from './question-list-reducer';
 import currentQuestion from './current-question-reducer';
 
 const reducer = combineReducers(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { EditQuestion } from '../connectors/redux/action-creators/question-creator';
+import { EditQuestion } from '../connectors/redux/action-creators/question-list';
 import '../styles/edit.css';
 
 const uuid = require('uuid/v4');

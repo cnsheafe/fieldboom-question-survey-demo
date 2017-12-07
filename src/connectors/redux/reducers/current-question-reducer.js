@@ -2,7 +2,7 @@ import {
   CHANGE_QUESTION,
   HOVER_ON_QUESTION,
   CANCEL_HOVER,
-} from '../action-creators/current-question-editor';
+} from '../action-creators/current-question';
 
 function changeQuestion(state, action) {
   return state.set('id', action.id);
