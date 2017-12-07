@@ -57,7 +57,10 @@ export class Edit extends React.Component {
     if (this.props.answers) {
       answers = this.props.answers.map((answer, index) => {
         return (
-          <li key={uuid()}>
+          <li key={uuid()} className="edit-answer-item">
+            <span className="edit-reorder-answers">
+              <i className="fa fa-sort" aria-hidden="true" />
+            </span>
             <span>
               <input
                 className="edit-answer"
@@ -67,20 +70,24 @@ export class Edit extends React.Component {
               />
             </span>
             <span>
-              <button
+              <i
+                role="button"
                 data-index={index}
                 data-answer={answer}
+                className="material-icons green-add"
                 onClick={e => this.handleAddAnswer(e)}
               >
-                Add
-              </button>
-              <button
+                add_circle
+              </i>
+              <i
+                role="button"
                 data-index={index}
                 data-answer={answer}
+                className="material-icons red-remove"
                 onClick={e => this.handleRemoveAnswer(e)}
               >
-                Remove
-              </button>
+                remove_circle
+              </i>
             </span>
           </li>
         );
@@ -95,13 +102,14 @@ export class Edit extends React.Component {
         </div>
         <div className="edit-question-text">
           <label htmlFor="edit-question">Question</label>
-          <input
+          <textarea
             id="edit-question"
             defaultValue={this.props.title || ''}
+            rows="5"
             onChange={e => this.handleTitleChange(e)}
           />
         </div>
-        <div>
+        <div className="edit-answers">
           <h3>Answer Choices</h3>
           <ul>{answers}</ul>
         </div>
@@ -120,7 +128,7 @@ function mapStateToProps(state) {
       answers: question.answers,
       hidden: false,
       id: question.id,
-      index: 0,
+      index: 1,
     };
   }
 
@@ -136,7 +144,7 @@ function mapStateToProps(state) {
         answers: question.answers,
         hidden: false,
         id: question.id,
-        index: index,
+        index: index + 1,
       };
     }
   }
