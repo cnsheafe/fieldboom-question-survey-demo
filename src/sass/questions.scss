@@ -12,11 +12,19 @@
   display: none;
 }
 
+
 .question {
-  border: 2px solid $blue-border;
+  border: 2px solid $opaque-border;
   margin-top: 20px;
   padding-bottom: 50px;
+}
 
+.hover {
+  border-top: 3px solid $darker-opaque;
+}
+
+.current-question {
+  border-color: $blue-border;
 }
 
 .question-header {
