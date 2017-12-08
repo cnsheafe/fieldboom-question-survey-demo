@@ -2,5 +2,8 @@
   "extends": "react-static/.babelrc",
   "plugins": [
     "transform-decorators-legacy"
+  ],
+  "presets": [
+    "react"
   ]
 }

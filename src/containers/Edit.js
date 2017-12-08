@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { List } from 'immutable';
 import { EditQuestion } from '../connectors/redux/action-creators/question-list';
 import '../styles/edit.css';
 
@@ -9,6 +11,11 @@ const uuid = require('uuid/v4');
  * Represents view component for editing highlighted question
  */
 export class Edit extends React.Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    answers: PropTypes.objectOf(List).isRequired,
+  }
   // Prevents re-rendering of component when changing inputs
   // So focus is maintained on input when editing
   shouldComponentUpdate(nextProps) {
@@ -133,7 +140,6 @@ function mapStateToProps(state) {
     return {
       title: question.title,
       answers: question.answers,
-      hidden: false,
       id: question.id,
       index: 1,
     };
@@ -148,7 +154,6 @@ function mapStateToProps(state) {
       return {
         title: question.title,
         answers: question.answers,
-        hidden: false,
         id: question.id,
         index: index + 1,
       };
@@ -157,7 +162,6 @@ function mapStateToProps(state) {
   return {
     title: null,
     answers: null,
-    hidden: true,
     id: '',
   };
 }
