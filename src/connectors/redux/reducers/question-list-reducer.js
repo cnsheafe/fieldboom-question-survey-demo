@@ -24,15 +24,15 @@ function deleteQuestion(state, action) {
 }
 
 function updateQuestion(state, action) {
-  const keyValuePair = state.findEntry(q => {
+  const [index, question] = state.findEntry(q => {
     return q.id === action.id;
   });
   const updatedQuestion = {
     title: action.title,
     answers: action.answers,
-    id: keyValuePair[1].id,
+    id: question.id,
   };
-  const newState = state.set(keyValuePair[0], updatedQuestion);
+  const newState = state.set(index, updatedQuestion);
   return newState;
 }
 
@@ -46,6 +46,11 @@ function moveQuestion(state, action) {
     .insert(action.index, question);
 }
 
+/**
+ * Handles the questions-list branch of the app state
+ * @param {List} state A list of questions
+ * @param {*} action Action
+ */
 export default function(state, action) {
   switch (action.type) {
     case ADD_QUESTION:

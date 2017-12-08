@@ -16,6 +16,11 @@ function cancelHoverOver(state, action) {
   return state.set('next', '');
 }
 
+/**
+ * Handles the currentQuestion branch of the app state
+ * @param {Map} state A map with props 'id' and 'next'
+ * @param {*} action An action
+ */
 export default function(state, action = {}) {
   switch (action.type) {
     case CHANGE_QUESTION:
