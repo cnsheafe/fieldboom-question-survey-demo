@@ -15,7 +15,8 @@
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "transform": {
       "\\.js$": "babel-jest",
-      "\\.css$": "<rootDir>/style-mock.js"
+      "\\.css$": "<rootDir>/style-mock.js",
+      "\\.png$": "<rootDir>/style-mock.js"
     }
   },
   "dependencies": {
