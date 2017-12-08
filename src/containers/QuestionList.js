@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
+import PropTypes from 'prop-types';
+import { List } from 'immutable';
 import Question from './Question';
 import { AddQuestion } from '../connectors/redux/action-creators/question-list';
 import store from '../connectors/redux/store';
@@ -11,6 +13,11 @@ import '../styles/questions.css';
  * A view component for displaying a list of questions.
  */
 export class QuestionList extends React.Component {
+  static propTypes = {
+    questions: PropTypes.objectOf(List).isRequired,
+    connectDropTarget: PropTypes.func,
+  };
+
   render() {
     const questions = this.props.questions.map((question, index) => {
       return (
