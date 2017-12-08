@@ -5,7 +5,12 @@ import '../styles/edit.css';
 
 const uuid = require('uuid/v4');
 
+/**
+ * Represents view component for editing highlighted question
+ */
 export class Edit extends React.Component {
+  // Prevents re-rendering of component when changing inputs
+  // So focus is maintained on input when editing
   shouldComponentUpdate(nextProps) {
     if (
       nextProps.id === this.props.id &&
@@ -121,6 +126,8 @@ export class Edit extends React.Component {
 function mapStateToProps(state) {
   const currentId = state.get('currentQuestion').get('id');
 
+  // Checks if no id has been set
+  // If true, set the first question as default
   if (currentId === '' && state.get('questions').size > 0) {
     const question = state.get('questions').first();
     return {

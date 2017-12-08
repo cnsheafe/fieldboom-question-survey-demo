@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import QuestionList from './QuestionList';
 import '../styles/canvas.css';
 
+/**
+ * Represents Presentation View component for central section of app
+ */
 export class Canvas extends React.Component {
   static myProps = {
     highlight: PropTypes.bool.isRequired,
@@ -54,6 +57,7 @@ export class Canvas extends React.Component {
   }
 }
 
+// Mapping for conditionally highlighting preview/submit buttons
 function mapStateToProps(state) {
   return {
     highlight: state.get('questions').size > 0,

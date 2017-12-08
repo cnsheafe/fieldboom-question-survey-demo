@@ -7,6 +7,9 @@ import store from '../connectors/redux/store';
 import { ChangeQuestion } from '../connectors/redux/action-creators/current-question';
 import '../styles/questions.css';
 
+/**
+ * A view component for displaying a list of questions.
+ */
 export class QuestionList extends React.Component {
   render() {
     const questions = this.props.questions.map((question, index) => {
@@ -55,6 +58,7 @@ const specs = {
     ]);
     store.dispatch(action);
     store.dispatch(ChangeQuestion(action.id));
+    // We are not using anything from the return at the moment
     return undefined;
   },
 };

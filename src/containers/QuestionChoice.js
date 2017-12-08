@@ -3,6 +3,9 @@ import { DragSource } from 'react-dnd';
 import PropTypes from 'prop-types';
 import '../styles/choice.css';
 
+/**
+ * Represents view component for a single question selection choice
+ */
 export class Choice extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -34,6 +37,7 @@ const cardSource = {
   },
 };
 
+// Component is meant to be dragged over canvas to add a default question to the list
 export default DragSource('Choice', cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),

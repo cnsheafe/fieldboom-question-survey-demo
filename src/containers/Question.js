@@ -17,6 +17,9 @@ import '../styles/questions.css';
 
 const uuid = require('uuid/v4');
 
+/**
+ * Represents view component of question as part of the question list
+ */
 export class Question extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -31,6 +34,7 @@ export class Question extends React.Component {
     isDragging: PropTypes.bool,
   };
 
+  // Changes current question id to self
   onHighlightQuestion() {
     this.props.highlight(this.props.qId);
   }
@@ -50,6 +54,8 @@ export class Question extends React.Component {
       );
     });
 
+    // current-question adds styles if this question
+    // matches the currentQuestion.id in the store
     const classNameString = `question ${
       this.props.isCurrent ? 'current-question' : ''
     }`;
@@ -80,6 +86,7 @@ export class Question extends React.Component {
       </div>
     );
 
+    // Registers component as both drag and drop if DnD-connected
     if (this.props.connectDragSource && this.props.connectDropTarget) {
       return this.props.connectDropTarget(
         this.props.connectDragSource(
@@ -130,10 +137,12 @@ const cardTarget = {
   hover(props, monitor) {
     const draggedId = monitor.getItem().sourceId;
     if (draggedId !== props.qId) {
+      // Highlight if moving over new question
       store.dispatch(HoverOver(props.qId));
       store.dispatch(ChangeQuestion(props.qId));
     }
     else {
+      // Otherwise highlight the source question
       store.dispatch(HoverOver(draggedId));
       store.dispatch(ChangeQuestion(draggedId));
     }
@@ -143,13 +152,14 @@ const cardTarget = {
     if (draggedId !== props.qId) {
       store.dispatch(MoveQuestion(draggedId, props.index));
     }
-    store.dispatch(ChangeQuestion(draggedId));
 
+    store.dispatch(ChangeQuestion(draggedId));
     store.dispatch(CancelHoverOver());
   },
 };
 
 function collector(connect, monitor) {
+  // Remove highlight if not hovering over valid question
   if (!monitor.isOver()) {
     store.dispatch(CancelHoverOver());
   }
@@ -158,6 +168,7 @@ function collector(connect, monitor) {
   };
 }
 
+// Connects components to both Redux store and DnD
 export default connect(mapStateToProps, mapDispatchToProps)(
   DropTarget('Question', cardTarget, collector)(
     DragSource('Question', cardSource, (connect, monitor) => ({

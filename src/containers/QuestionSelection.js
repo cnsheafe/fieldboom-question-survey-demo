@@ -5,6 +5,9 @@ import logoImg from '../assets/logo-blog.png';
 
 const uuid = require('uuid/v4');
 
+/**
+ * A view component to handle a variety of question choices
+ */
 export class Selection extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +21,7 @@ export class Selection extends React.Component {
         </li>
       );
     });
+
     return (
       <section className="selection-of-choices">
         <div>
