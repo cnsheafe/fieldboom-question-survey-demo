@@ -19,3 +19,6 @@ npm run watch-css
 - React-DnD(Drag and Drop)
 - ImmutableJs
 - Static-React
+
+## React Component Tree
+![Component Tree of App](component-tree.png)
