@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Choice from './QuestionChoice';
 import '../styles/selection.css';
 import logoImg from '../assets/logo-blog.png';
-
 const uuid = require('uuid/v4');
 
 /**
  * A view component to handle a variety of question choices
  */
 export class Selection extends React.Component {
+  static propTypes = {
+    choices: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    })).isRequired,
+  }
   constructor(props) {
     super(props);
     this.choices = props.choices;
