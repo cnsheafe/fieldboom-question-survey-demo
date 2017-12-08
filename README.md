@@ -1,7 +1,21 @@
-# React-Static - Redux Example
+# Survey Question Generator Demo
 
-This example is based on the most basic version of react-static available, and adds:
+Create a question by dragging the Multi Choice option to the center of the screen.
+Features question editing, reordering, and deletion.
 
-- React Redux
+## Usage
+```
+npm install
+npm start
+```
+To set up styles use the following.
+```
+npm run watch-css
+```
 
-To get started, run `react-static create` and use the `redux` template.
+## Tech Stack
+
+- React-Redux
+- React-DnD(Drag and Drop)
+- ImmutableJs
+- Static-React
