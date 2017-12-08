@@ -6,9 +6,13 @@ import Canvas from './Canvas';
 import Edit from './Edit';
 import '../styles/home.css';
 
-export class Home extends React.Component {
+/**
+ * Returns a DnD Context-Container for the entire app
+ */
+export class Survey extends React.Component {
   constructor(props) {
     super(props);
+    // Only one choice that needs implementation :)
     this.defaultchoices = [{ title: 'Multi Choice', icon: 'view_list' }];
   }
 
@@ -23,4 +27,4 @@ export class Home extends React.Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(Home);
+export default DragDropContext(HTML5Backend)(Survey);
